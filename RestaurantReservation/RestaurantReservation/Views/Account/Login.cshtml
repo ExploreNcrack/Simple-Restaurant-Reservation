@@ -1,0 +1,47 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "User Login";
+}
+
+@section PageCSS {
+    <link rel="stylesheet" href="~/css/LoginPage.css" />
+}
+
+<section id="Login" class="flex-grow-1 d-flex flex-column">
+    <div class="d-flex flex-grow-1 h-100 justify-content-center">
+        <div class="align-self-center w-50 h-auto">
+            <div class="row mt-5">
+                <p class="mx-auto" style="font-size:30pt; font-weight:400">Login</p>
+            </div>
+            <div class="row mx-auto my-3 w-50 card rounded shadow">
+                <div class="col-md-12">
+                    <form method="post">
+                        <div asp-validation-summary="All" class="text-danger m-3"></div>
+                        <div class="form-group m-3">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group m-3">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group m-3">
+                            <div class="checkbox">
+                                <label asp-for="RememberMe">
+                                    <input asp-for="RememberMe" />
+                                    @Html.DisplayNameFor(m => m.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="text-center m-3">
+                            <button type="submit" class="btn btn-lg btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

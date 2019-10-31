@@ -1,0 +1,9 @@
+﻿#intro {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    /*this can use the background-cover-image css*/
+}

@@ -1,0 +1,15 @@
+﻿@model List<Table>
+
+@if (!Model.Any())
+{
+    <span class="error"><em>Sorry. There are no tables available for this time period</em></span>
+}
+else
+{
+    foreach (Table table in Model)
+    {
+        <div class="col-md-3 m-2" style="background: blue; color:white">
+            @table.TableNumber
+        </div>
+    }
+}

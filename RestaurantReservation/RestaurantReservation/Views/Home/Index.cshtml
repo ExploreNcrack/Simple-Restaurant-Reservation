@@ -3,13 +3,69 @@
 }
 
 @section PageCSS {
-    <link rel="stylesheet" href="~/css/HomePage.css"/>
+    <link rel="stylesheet" href="~/css/HomePage.css" />
 }
 
-<section id="intro" class="flex-grow-1 d-flex flex-column" style="background-image: url(/images/bg.jpg);">
+<section id="intro" class="flex-grow-1 d-flex flex-column" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(/images/bg.jpg);">
     <div class="container d-flex flex-grow-1 justify-content-center">
-        <div class="align-self-center">
-            <h1 style="color:white;">WELCOME</h1>
+        <div class="align-self-center container-fluid">
+            <div class="row">
+                <div class="col-md-7 card shadow mx-auto">
+                    <div class="row m-3" style="border-bottom: 1px solid #d8d9db;border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: rgb(216, 217, 219);">
+                        <h3 class="mx-auto">Make a reservation</h3>
+                    </div>
+                    <div class="row m-2">
+                        <label><b>Number Of People</b></label>
+                        <select class="w-100 form-control" id="NumberOfPeople" name="NumberOfPeople">
+                            @for (var i = 1; i <= 20; i++)
+                            {
+                                <option value=@i>@i</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="row m-2">
+                        <label><b>Date</b></label>
+                        <input id="ReservationDate" class="form-control w-100 date-picker-class datetimepicker-input" data-toggle="datetimepicker" data-target="#ReservationDate"/>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-6 pl-0">
+                            <label><b>Start Time</b></label>
+                            <input id="StartTime" class="form-control w-100 date-picker-class datetimepicker-input" data-toggle="datetimepicker" data-target="#StartTime"/>
+                        </div>
+                        <div class="col-6 pl-0">
+                            <label><b>End Time</b></label>
+                            <input id="EndTime" class="form-control w-100 date-picker-class datetimepicker-input" data-toggle="datetimepicker" data-target="#EndTime"/>
+                        </div>
+                    </div>
+                    <div hidden class="row m-2">
+
+                    </div>
+                    <div class="row m-4">
+                        <button class="btn btn-block btn-lg btn-primary rounded">Find a Table</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
+
+@section Scripts{
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+    <script>
+        $(function () {
+            $('#ReservationDate').datetimepicker({
+                    format: 'L'
+            });
+            $('#StartTime').datetimepicker({
+                    format:'LT'
+            });
+            $('#EndTime').datetimepicker({
+                    format:'LT'
+            });
+        });
+    </script>
+}

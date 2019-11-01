@@ -68,3 +68,4 @@ C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservat
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\RestaurantReservation.dll
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\RestaurantReservation.pdb
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\RestaurantReservation.csproj.CopyComplete
+C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Table\TablesPartial.g.cshtml.cs

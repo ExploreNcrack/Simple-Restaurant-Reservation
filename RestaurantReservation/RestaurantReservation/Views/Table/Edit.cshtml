@@ -1,0 +1,42 @@
+﻿@model TableEditViewModel
+
+@{
+    ViewData["Title"] = "Edit Table";
+}
+
+<section class="flex-grow-1 d-flex flex-column">
+    <div class="d-flex flex-grow-1 h-100 justify-content-center">
+        <div class="align-self-center container-fluid h-auto">
+            <div class="row mt-5">
+                <p class="mx-auto" style="font-size:30pt; font-weight:400">Edit Table</p>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-6 col-lg-4 mx-auto">
+                    <form method="post" class="card rounded shadow">
+                        <div asp-validation-summary="All" class="text-danger mx-3 mt-3 mb-0"></div>
+                        <input hidden asp-for="Id" />
+                        <div class="form-group m-3">
+                            <label asp-for="TableNumber"></label>
+                            <input asp-for="TableNumber" class="form-control" />
+                            <span asp-validation-for="TableNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group m-3">
+                            <label asp-for="NumberOfSeats"></label>
+                            <input asp-for="NumberOfSeats" class="form-control" />
+                            <span asp-validation-for="NumberOfSeats" class="text-danger"></span>
+                        </div>
+                        <div class="form-group m-3">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="text-center mx-3 my-4">
+                            <button type="submit" class="btn btn-lg btn-block btn-primary">Save</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

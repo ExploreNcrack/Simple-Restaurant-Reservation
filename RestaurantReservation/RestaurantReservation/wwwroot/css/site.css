@@ -42,9 +42,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  width: 100%;
-  min-height: 100vh;
+    /* Margin bottom by footer height */
+    width: 100%;
+    min-height: 100vh;
+    background: #f5f8fd;
 }
 .footer {
   width: 100%;

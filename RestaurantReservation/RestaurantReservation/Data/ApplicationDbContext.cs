@@ -17,7 +17,6 @@ namespace RestaurantReservation.Data
             // options object containing details such as the connection string 
         }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<Reservation> Reservations { set; get; }
 
@@ -28,9 +27,9 @@ namespace RestaurantReservation.Data
             modelBuilder.Entity<User>()    // One-To-Many
                 .HasMany(u => u.Reservations)
                 .WithOne(r => r.User);
-            modelBuilder.Entity<Reservation>()   // One-To-One
+            modelBuilder.Entity<Reservation>()   // Many-To-One
                 .HasOne(r => r.Table)
-                .WithOne(t => t.Reservation);
+                .WithMany(t => t.Reservations);
         }
     }
 }

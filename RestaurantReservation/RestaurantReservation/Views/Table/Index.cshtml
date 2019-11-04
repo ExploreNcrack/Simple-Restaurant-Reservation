@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Table>
+
+@{
+    ViewData["Title"] = "Table List";
+}
+
+@section PageCSS {
+    <link rel="stylesheet" href="~/css/TableListPage.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+}
+
+<section class="container h-auto mt-5 mb-5">
+    <div class="row">
+        <a asp-controller="Table" asp-action="Create" class="mt-5 mr-3 btn px-3 btn-primary ml-auto">Create</a>
+    </div>
+    
+    <div class="wrap-table100 mt-3 shadow">
+        <div class="table">
+            <div class="tableRow header">
+                <div class="cell">
+                    Table #
+                </div>
+                <div class="cell">
+                    Description
+                </div>
+                <div class="cell">
+                    Number Of Seats
+                </div>
+                <div class="cell">
+                </div>
+            </div>
+            @if (!Model.Any())
+            {
+                <div class="text-center tableRow"><div class="cell" colspan="3">No tables set up yet</div></div>
+            }
+            @foreach (var table in Model)
+            {
+                <div class="tableRow">
+                    <div class="cell">
+                        @table.TableNumber
+                    </div>
+                    <div class="cell"  style="white-space: pre-wrap;">@table.Description</div>
+                    <div class="cell">
+                        @table.NumberOfSeats
+                    </div>
+                    <div class="cell">
+                        <a class="btn btn-secondary" asp-action="Edit" asp-controller="Table" asp-route-id="@table.TableId">Edit</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-controller="Table" asp-route-id="@table.TableId" onclick="return ConfirmDelete()">Delete</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</section>
+
+@section Scripts {
+    <script>
+    function ConfirmDelete() {
+        let toDelete = confirm("Are you sure you want to delete this table?");
+        if (toDelete) {
+            return true;
+        }
+        return false;
+    }
+    </script>
+}

@@ -19,6 +19,7 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"/>
     @RenderSection("pageCSS", required: false)
 </head>
 <body class="d-flex flex-column">
@@ -42,6 +43,12 @@
                     <ul class="navbar-nav ml-auto">
                         @if (signInManager.IsSignedIn(User))
                         {
+                            <li li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Table" asp-action="Index">Tables</a>
+                            </li>
+                            <li li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
+                            </li>
                             <li class="nav-item">
                                 <form method="post" asp-action="logout" asp-controller="Account">
                                     <button type="submit" class="nav-link btn-link py-0" style="width:auto">

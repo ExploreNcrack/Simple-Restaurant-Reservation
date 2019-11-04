@@ -185,9 +185,13 @@ namespace RestaurantReservation.Data.Migrations
 
                     b.Property<DateTime>("ReservationStart");
 
+                    b.Property<int?>("TableId");
+
                     b.Property<int>("UserId");
 
                     b.HasKey("ReservationId");
+
+                    b.HasIndex("TableId");
 
                     b.HasIndex("UserId");
 
@@ -203,14 +207,9 @@ namespace RestaurantReservation.Data.Migrations
 
                     b.Property<int>("NumberOfSeats");
 
-                    b.Property<int>("ReservationId");
-
                     b.Property<int>("TableNumber");
 
                     b.HasKey("TableId");
-
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
 
                     b.ToTable("Tables");
                 });
@@ -228,7 +227,7 @@ namespace RestaurantReservation.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -278,17 +277,13 @@ namespace RestaurantReservation.Data.Migrations
 
             modelBuilder.Entity("RestaurantReservation.Models.Reservation", b =>
                 {
+                    b.HasOne("RestaurantReservation.Models.Table", "Table")
+                        .WithMany("Reservations")
+                        .HasForeignKey("TableId");
+
                     b.HasOne("RestaurantReservation.Models.User", "User")
                         .WithMany("Reservations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RestaurantReservation.Models.Table", b =>
-                {
-                    b.HasOne("RestaurantReservation.Models.Reservation", "Reservation")
-                        .WithOne("Table")
-                        .HasForeignKey("RestaurantReservation.Models.Table", "ReservationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

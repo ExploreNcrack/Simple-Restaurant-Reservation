@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Data;
+using RestaurantReservation.Models;
 using RestaurantReservation.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,14 +18,101 @@ namespace RestaurantReservation.Controllers
 
         public TableController(ApplicationDbContext applicationDbContext)
         {
-            _context = applicationDbContext;
             // constructor injection to inject DbCotnext
-
+            _context = applicationDbContext;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
+            var model = _context.Tables.OrderBy(t => t.TableNumber).ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(TableCreateViewModel tableCreateViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Table newTable = new Table
+                {
+                    TableNumber = tableCreateViewModel.TableNumber,
+                    NumberOfSeats = tableCreateViewModel.NumberOfSeats,
+                    Description = tableCreateViewModel.Description
+                };
+
+                await _context.Tables.AddAsync(newTable);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index"); 
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var table = await _context.Tables.FindAsync(id);
+            if (table == null)
+            {
+                return NotFound();
+            }
+            var tableViewModel = new TableEditViewModel
+            {
+                Id = table.TableId,
+                TableNumber = table.TableNumber,
+                Description = table.Description,
+                NumberOfSeats = table.NumberOfSeats
+            };
+            return View(tableViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(TableEditViewModel tableEditViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Table oldTable = await _context.Tables.FindAsync(tableEditViewModel.Id);
+                if (oldTable == null)
+                {
+                    return NotFound();
+                }
+
+                oldTable.TableNumber = tableEditViewModel.TableNumber;
+                oldTable.NumberOfSeats = tableEditViewModel.NumberOfSeats;
+                oldTable.Description = tableEditViewModel.Description;
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var table = await _context.Tables.FindAsync(id);
+            if (table == null)
+            {
+                return NotFound();
+            }
+            _context.Tables.Remove(table);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -31,20 +120,20 @@ namespace RestaurantReservation.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Tables
+               var AllAvailableTables = _context.Tables
+                    .AsNoTracking()
                     .Where(t => t.NumberOfSeats >= reservationViewModel.NumberOfPeople)
                     .Where(t => !_context.Reservations
-                                    .Where(r => r.Table.TableId == t.TableId &&
-                                                reservationViewModel.ReservationStart < r.ReservationStart &&
-                                                r.ReservationStart < reservationViewModel.ReservationEnd &&
-                                                reservationViewModel.ReservationStart < r.ReservationEnd &&
-                                                r.ReservationEnd < reservationViewModel.ReservationEnd)
-                                    .Select(r => r.Table.TableId)
-                                    .ToList()
-                                    .Contains(t.TableId)
-                           );
+                                    .Any(r => r.Table.TableId == t.TableId &&
+                                                (reservationViewModel.ReservationStart < r.ReservationStart && r.ReservationStart < reservationViewModel.ReservationEnd)
+                                                 ||
+                                                (reservationViewModel.ReservationStart < r.ReservationEnd && r.ReservationEnd < reservationViewModel.ReservationEnd)
+                                        )
+                           )
+                    .ToList();
+                return PartialView("TablesPartial", AllAvailableTables);
             }
-            return View();
+            return BadRequest();
         }
     }
 }

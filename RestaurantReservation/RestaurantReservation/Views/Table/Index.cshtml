@@ -31,11 +31,16 @@
             </div>
             @if (!Model.Any())
             {
-                <div class="text-center tableRow"><div class="cell" colspan="3">No tables set up yet</div></div>
+        <div class="text-center h tableRow">
+            <div class="cell">No tables set up yet</div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
             }
             @foreach (var table in Model)
             {
-                <div class="tableRow">
+                <div class="tableRow h" data-table-id="@table.TableId">
                     <div class="cell">
                         @table.TableNumber
                     </div>
@@ -44,7 +49,6 @@
                         @table.NumberOfSeats
                     </div>
                     <div class="cell">
-                        <a class="btn btn-secondary" asp-action="Edit" asp-controller="Table" asp-route-id="@table.TableId">Edit</a>
                         <a class="btn btn-danger" asp-action="Delete" asp-controller="Table" asp-route-id="@table.TableId" onclick="return ConfirmDelete()">Delete</a>
                     </div>
                 </div>
@@ -64,5 +68,13 @@
         }
         return false;
     }
+    $(".h.tableRow").click(function () {
+        let tableId = $(this).data("table-id");
+        if (window.location.href[window.location.href.length - 1] !== "/") {
+            window.location.href = window.location.href + "/Edit/" + tableId;
+        } else {
+            window.location.href = window.location.href + "Edit/" + tableId;
+        }
+    });
     </script>
 }

@@ -24,9 +24,9 @@ namespace RestaurantReservation.Data
         {
             base.OnModelCreating(modelBuilder);
             // use Flutent API to configure relationships
-            modelBuilder.Entity<User>()    // One-To-Many
-                .HasMany(u => u.Reservations)
-                .WithOne(r => r.User);
+            //modelBuilder.Entity<User>()    // One-To-Many
+            //    .HasMany(u => u.Reservations)
+            //    .WithOne(r => r.User);
             modelBuilder.Entity<Reservation>()   // Many-To-One
                 .HasOne(r => r.Table)
                 .WithMany(t => t.Reservations);

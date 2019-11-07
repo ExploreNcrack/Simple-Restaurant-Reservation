@@ -53,7 +53,6 @@ C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservat
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Account\Register.g.cshtml.cs
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
-C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Reservation\Create.g.cshtml.cs
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Reservation\Edit.g.cshtml.cs
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Reservation\Index.g.cshtml.cs
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
@@ -72,3 +71,4 @@ C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservat
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Table\Index.g.cshtml.cs
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Table\Create.g.cshtml.cs
 C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Table\Edit.g.cshtml.cs
+C:\Users\Zhaozhen Liang\Desktop\Simple-Restaurant-Reservation\RestaurantReservation\RestaurantReservation\obj\Debug\netcoreapp2.2\Razor\Views\Reservation\Confirm.g.cshtml.cs

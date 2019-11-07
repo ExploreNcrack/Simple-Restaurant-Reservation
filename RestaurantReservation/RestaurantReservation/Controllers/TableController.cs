@@ -23,9 +23,9 @@ namespace RestaurantReservation.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var model = _context.Tables.OrderBy(t => t.TableNumber).ToList();
+            var model = await _context.Tables.OrderBy(t => t.TableNumber).ToListAsync();
             return View(model);
         }
 
@@ -116,21 +116,21 @@ namespace RestaurantReservation.Controllers
         }
 
         [HttpGet]
-        public IActionResult FindAvailableTables(ReservationViewModel reservationViewModel)
+        public async Task<IActionResult> FindAvailableTables(ReservationViewModel reservationViewModel)
         {
             if (ModelState.IsValid)
             {
-               var AllAvailableTables = _context.Tables
-                    .AsNoTracking()
-                    .Where(t => t.NumberOfSeats >= reservationViewModel.NumberOfPeople)
-                    .Where(t => !_context.Reservations
-                                    .Any(r => r.Table.TableId == t.TableId &&
-                                                (reservationViewModel.ReservationStart < r.ReservationStart && r.ReservationStart < reservationViewModel.ReservationEnd)
-                                                 ||
-                                                (reservationViewModel.ReservationStart < r.ReservationEnd && r.ReservationEnd < reservationViewModel.ReservationEnd)
-                                        )
-                           )
-                    .ToList();
+                var AllAvailableTables = await _context.Tables
+                     .AsNoTracking()
+                     .Where(t => t.NumberOfSeats >= reservationViewModel.NumberOfPeople)
+                     .Where(t => !_context.Reservations
+                                     .Any(r => r.Table.TableId == t.TableId && (
+                                                 (reservationViewModel.ReservationStart < r.ReservationStart && r.ReservationStart < reservationViewModel.ReservationEnd)
+                                                  ||
+                                                 (reservationViewModel.ReservationStart > r.ReservationStart && r.ReservationEnd > reservationViewModel.ReservationStart) )
+                                         )
+                            )
+                     .ToListAsync();
                 return PartialView("TablesPartial", AllAvailableTables);
             }
             return BadRequest();

@@ -6,10 +6,13 @@
 }
 else
 {
-    foreach (Table table in Model)
+    <div class="my-3 mx-2 w-100 row"><h6>Following are the avaiable table options:</h6></div>
+    <div id="tables" class="w-100 row">
+    @foreach (Table table in Model)
     {
-        <div class="col-md-3 m-2" style="background: blue; color:white">
+        <a class="w-100 col-md-3 m-2 p-2 text-center btn-primary btn" style="color:white" data-table-id="@table.TableId">
             @table.TableNumber
-        </div>
+        </a>
     }
+    </div>
 }

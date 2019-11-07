@@ -127,6 +127,11 @@
 }
 
 .tableRow:hover {
+    background-color: #3c4fd8;
+    cursor: pointer;
+}
+
+.h:hover {
   background-color: #ececff;
   cursor: pointer;
 }

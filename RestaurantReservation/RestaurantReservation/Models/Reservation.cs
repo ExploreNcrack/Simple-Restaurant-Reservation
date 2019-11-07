@@ -15,9 +15,8 @@ namespace RestaurantReservation.Models
         public DateTime ReservationEnd { get; set; }
         [Required]
         public int NumberOfPeople { get; set; }
-
-        public int UserId { get; set; }
-        public User User { get; set; }
+    
+        public int TableId { get;set; }
         public Table Table { get; set; }
     }
 }

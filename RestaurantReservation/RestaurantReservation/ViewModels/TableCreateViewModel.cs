@@ -17,5 +17,6 @@ namespace RestaurantReservation.ViewModels
         [Required]
         [Display(Name = "Number Of Seats")]
         public int NumberOfSeats { get; set; }
+        public TableCreateViewModel() { }
     }
 }

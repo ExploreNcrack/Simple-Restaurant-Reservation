@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.Data;
 using RestaurantReservation.Models;
 using RestaurantReservation.ViewModels;
+using Microsoft.Extensions.Logging;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,9 +15,11 @@ namespace RestaurantReservation.Controllers
     public class ReservationController : Controller
     {
         public ApplicationDbContext _context { get; }
+        public readonly ILogger<Reservation> logger;
 
-        public ReservationController(ApplicationDbContext applicationDbContext)
+        public ReservationController(ApplicationDbContext applicationDbContext, ILogger<Reservation> logger)
         {
+            this.logger = logger;
             _context = applicationDbContext;
         }
 
@@ -55,7 +58,7 @@ namespace RestaurantReservation.Controllers
                 TableId = reservationVeiwModel.TableId
             };
 
-            await _context.Reservations.AddAsync(reservation);
+            _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");

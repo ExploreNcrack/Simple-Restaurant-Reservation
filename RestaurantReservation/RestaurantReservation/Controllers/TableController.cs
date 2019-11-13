@@ -47,7 +47,7 @@ namespace RestaurantReservation.Controllers
                     Description = tableCreateViewModel.Description
                 };
 
-                await _context.Tables.AddAsync(newTable);
+                _context.Tables.Add(newTable);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index"); 

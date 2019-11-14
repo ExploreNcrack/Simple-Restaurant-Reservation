@@ -1,7 +1,67 @@
-﻿@{
+﻿@model IEnumerable<Reservation>
+
+@{
     ViewData["Title"] = "Reservation List";
 }
 
 @section PageCSS {
     <link rel="stylesheet" href="~/css/ReservationListPage.css" />
 }
+
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*DisplayNameFor HTML Helper inspects the Title property referenced in the lambda expression to determine the display name.*@
+                @Html.DisplayNameFor(model => model.ReservationStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReservationEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfPeople)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Table.TableNumber)
+            </th>
+         
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => reservation.ReservationStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => reservation.ReservationEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => reservation.NumberOfPeople)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => reservation.Table.TableNumber)
+                </td>
+                <td>
+                   
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@reservation.ReservationId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@reservation.ReservationId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@reservation.ReservationId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Data;
@@ -12,6 +13,7 @@ using RestaurantReservation.ViewModels;
 
 namespace RestaurantReservation.Controllers
 {
+    [Authorize]
     public class TableController : Controller
     {
         public ApplicationDbContext _context { get; }
@@ -25,7 +27,7 @@ namespace RestaurantReservation.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var model = await _context.Tables.OrderBy(t => t.TableNumber).ToListAsync();
+            var model = await _context.Tables.AsNoTracking().OrderBy(t => t.TableNumber).ToListAsync();
             return View(model);
         }
 
@@ -116,6 +118,7 @@ namespace RestaurantReservation.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> FindAvailableTables(ReservationViewModel reservationViewModel)
         {
             if (ModelState.IsValid)

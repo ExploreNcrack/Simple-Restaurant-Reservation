@@ -12,10 +12,13 @@ namespace RestaurantReservation.Models
         public int ReservationId { get; set; }
         [Required]
         [ValidReservationDateTime("ReservationEnd", ErrorMessage = "Not valid")]
+        [Display(Name = "Reservation Start")]
         public DateTime ReservationStart { get; set; }
         [Required]
+        [Display(Name = "Reservation End")]
         public DateTime ReservationEnd { get; set; }
         [Required]
+        [Display(Name = "Number Of People")]
         public int NumberOfPeople { get; set; }
     
         public int TableId { get;set; }

@@ -7,11 +7,14 @@ using RestaurantReservation.Data;
 using RestaurantReservation.Models;
 using RestaurantReservation.ViewModels;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace RestaurantReservation.Controllers
 {
+    [Authorize]
     public class ReservationController : Controller
     {
         public ApplicationDbContext _context { get; }
@@ -24,10 +27,10 @@ namespace RestaurantReservation.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            return View();
+            var model = await _context.Reservations.AsNoTracking().Include(r => r.Table).OrderBy(r => r.ReservationStart).ToListAsync();
+            return View(model);
         }
 
         [HttpGet]

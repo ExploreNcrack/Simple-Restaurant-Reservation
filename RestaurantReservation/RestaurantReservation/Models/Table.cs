@@ -10,6 +10,7 @@ namespace RestaurantReservation.Models
     {
         public int TableId { get; set; }
         [Required]
+        [Display(Name = "Table Number")]
         public int TableNumber { get; set; }
         public string Description { get; set; }
         [Required]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantReservation.Utilities.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace RestaurantReservation.ViewModels
     {
         [Required]
         [Display(Name = "Reservation Start")]
+        [ValidReservationDateTime("ReservationEnd", ErrorMessage = "Not valid")]
         public DateTime ReservationStart { get; set; }
         [Required]
         [Display(Name = "Reservation End")]

@@ -109,7 +109,7 @@
                 url: "@Url.Action("FindAvailableTables","Table")",
                 type: "GET",
                 data: data,
-                success: function (data) {
+                success: function (data, xhr) {
                     $("#result").html(data);
                     $("#result").show();
                     $("#button").hide();
@@ -119,6 +119,8 @@
                 },
                 error: function (error) {
                     // error handle
+                    $("#result").html('<p class="text-danger">Input Not Valid</p>');
+                    $("#result").show();
                 }
             });
         });

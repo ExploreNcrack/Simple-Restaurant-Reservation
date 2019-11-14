@@ -33,6 +33,10 @@ namespace RestaurantReservation.Controllers
         [HttpGet]
         public async Task<IActionResult> Confirm(ReservationViewModel reservationViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var Table = await _context.Tables.FindAsync(reservationViewModel.TableId);
             if (Table == null)
             {
